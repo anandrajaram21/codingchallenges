@@ -6,4 +6,3 @@ This repository may include problems from:
 - HP CodeWars
 - Google Kickstart
 - Google Codejam
-- Leetcode
