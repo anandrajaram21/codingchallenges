@@ -10,7 +10,8 @@ Basic Algorithm Implementation:
 	b. For each library, iterate through its books, which will be sorted based on the their score.
 	c. Some formulae used:
 		days = number_of_days - starting_date of the library
-		ex
+		example: days = 3, len(books) = 7, limit = 2
+		books_to_scan = len(books) - len(books) % limit
 """
 
 def signup():
