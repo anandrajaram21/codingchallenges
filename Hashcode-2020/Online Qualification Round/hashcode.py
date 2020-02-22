@@ -1,53 +1,28 @@
-""" Algorithm Implementation:
-1. Sign up those libraries which have the highest score of books
-2. Make a for loop that runs in signed up
-3. Start signing the books of the libraries from the start date till number_of_days
-4. Add the books to an array, and each time before adding, check if the book is already there in the array
-5. Calculate the sum of the scores of each book and that is the max.
 """
-import time
-
-# def book_signing():
-# 	end_date = number_of_days - 1
-# 	max_sum = 0
-# 	for i in signed_up:
-# 		i_books = libraries[i]['books']
-# 		print(i_books)
-# 		start_date = libraries[i]['starting_day']
-# 		start_date_copy = libraries[i]['starting_day']
-# 		limit = libraries[i]['book_limit']
-# 		# while start_date <= end_date:
-# 		# 	counter = 0
-# 		# 	for i in i_books:
-# 		# 		if i not in books:
-# 		# 			books.append(i)
-# 		# 			counter += 1
-# 		# 		if counter > limit:
-# 		# 			counter = 0
-# 		# 			break
-# 		# 	start_date += 1
-# 		counter = 0
-# 		for i in i_books:
-# 			if i not in books:
-# 				books.append(i)
-# 				counter += 1
-# 			if counter > limit:
-# 				counter = 0
-# 	for i in books:
-# 		max_sum += book_scores[i]
-# 	print(max_sum)
-
+Basic Algorithm Implementation:
+1. Signing up of libraries:
+	a. To determine which libraries to sign up, the libraries which have the ratio of the sum of the scores of their books to the number of days they take to sign up as the highest are signed up.
+	b. In simple words, ratio = (total score of books) / (number of books)
+	c. A new array is created with IDs of the libraries in the descending order of their ratios.
+	d. Every time a library is signed up, it is added to the signed_up array which contains the IDs of the libraries which are signed up.
+2. Signing up of books;
+	a. Iterate through all libraries in the signed_up array
+	b. For each library, iterate through its books, which will be sorted based on the their score.
+	c. Some formulae used:
+		days = number_of_days - starting_date of the library
+		ex
+"""
 
 def signup():
 	days_taken = 0
 	# Creating a list with the library ids having highest score in sorted form
 	library_score_temp = []
 	for i in libraries:
-		library_score_temp.append((i, libraries[i]['score']))
+		library_score_temp.append((i, libraries[i]['ratio']))
 	library_score_temp.sort(key=lambda elem: elem[1], reverse=True)
 	library_score = list(map(lambda x: x[0], library_score_temp))
-	print("List of libraries and their scores", library_score_temp)
-	print("List of libraries with high scores", library_score)
+	print("List of libraries and their ratios", library_score_temp)
+	print("List of libraries with high ratios", library_score)
 	for i in library_score:
 		days = libraries[i]['signup']
 		days_taken += days
@@ -74,7 +49,7 @@ with open("e_so_many_books.txt") as f:
 		"books": scores,
 		"signup": details[1],
 		"book_limit": details[2],
-		"score": sum(list(map(lambda x: book_scores[x], scores)))
+		"ratio": (sum(list(map(lambda x: book_scores[x], scores)))) / details[0]
 		}
 
 	signup()
