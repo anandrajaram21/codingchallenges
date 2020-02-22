@@ -18,7 +18,7 @@ Basic Algorithm Implementation:
 		else:
 			books_to_scan = len(books)
 	d. For each book, add it to an array, and increment a counter variable
-	e. If the counter becomes greater than books_to_scan, set the counter back to 0, and break out of the inner loop.
+	e. If the counter becomes greater than books_to_scan, break out of the inner loop.
 """
 
 import json
@@ -40,6 +40,18 @@ def signup():
 		signed_up.append(i) # Adding the particular library signed_up array if they are within the deadline for signup
 		days_taken += 1
 		libraries[i]['starting_day'] = days_taken + 1 # The date on which the library can start scanning books
+
+# Sorting Method
+
+def sorting(arr):
+	sorted_arr = []
+	temp_arr = []
+	for i in range(len(arr)):
+		temp_arr.append((arr[i], book_scores[arr[i]]))
+	temp_arr.sort(key=lambda elem: elem[1], reverse=True)
+	for i in temp_arr:
+		sorted_arr.append(i[0])
+	return sorted_arr
 
 # Book Scanning Method
 
@@ -85,9 +97,10 @@ with open("f_libraries_of_the_world.txt") as f:
 	for i in range(number_of_libraries):
 		details = list(map(int, f.readline().split(" "))) # The details of each library read from the input file
 		library_books = list(map(int, f.readline().split(" "))) # The IDs of the books in each library
+		sorted_library_books = sorting(library_books)
 		libraries[i] = {
 		"library_books_number": details[0], # Number of books in the library
-		"books": library_books, # The IDs of the books in the library
+		"books": sorted_library_books, # The IDs of the books in the library
 		"signup": details[1], # Number of days taken for signup
 		"book_limit": details[2], # Limit to the number of books that can be signed each day
 		"checking": True,
