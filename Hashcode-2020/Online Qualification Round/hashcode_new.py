@@ -1,3 +1,5 @@
+import time
+start = time.time()
 def sorting(arr):
 	sorted_arr = []
 	temp_arr = []
@@ -55,7 +57,7 @@ with open("a_example.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -94,7 +96,7 @@ with open("b_read_on.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -133,7 +135,7 @@ with open("c_incunabula.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -172,7 +174,7 @@ with open("d_tough_choices.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -211,7 +213,7 @@ with open("e_so_many_books.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -250,7 +252,7 @@ with open("f_libraries_of_the_world.txt") as f:
 		"number of books": details[0],
 		"signup": details[1],
 		"limit": details[2],
-		"library books": sorted_book_ids,
+		"library books": set(sorted_book_ids),
 		"average": (sum(list(map(lambda elem: book_scores[elem], book_ids))) / details[0]),
 		"scanned books": [],
 		"output number of books": 0
@@ -269,4 +271,6 @@ with open("f_output.txt", "w+") as output:
 				output.write(str(j) + '\n')
 			else:
 				output.write(str(j) + ' ')
-			counter += 1														
+			counter += 1					
+
+print(time.time() - start)			
