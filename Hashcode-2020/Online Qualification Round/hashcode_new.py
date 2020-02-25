@@ -20,6 +20,7 @@ def signup():
 		signed_up.append(i)
 		days_taken += libraries[i]['signup'] - 1
 		libraries[i]['starting day'] = days_taken + 1
+	print("signup done")
 
 def bookscan():
 	for i in signed_up:
@@ -29,15 +30,15 @@ def bookscan():
 		for j in i_books:
 			if counter > max_books:
 				break
-			if j not in books:
-				counter += 1
-				libraries[i]['scanned books'].append(j)
-				books.append(j)
+			counter += 1
+			libraries[i]['scanned books'].append(j)
+			books.append(j)
 		libraries[i]['output number of books'] = len(libraries[i]['scanned books'])
 		if libraries[i]['output number of books'] > 0:
 			signed_up_valid.append(i)
+	print("scanning done")
 
-with open("d_tough_choices.txt") as f:
+with open("a_example.txt") as f:
 	number_of_books, number_of_libraries, number_of_days = list(map(int, f.readline().split(" ")))
 	scores = list(map(int, f.readline().split(" ")))
 	book_scores = {}
@@ -60,11 +61,12 @@ with open("d_tough_choices.txt") as f:
 		"scanned books": [],
 		"output number of books": 0
 		}
+	print("reading done")
 
 signup()
 bookscan()
 
-with open("d_output.txt", "w+") as output:
+with open("a_output.txt", "w+") as output:
 	output.write(str(len(signed_up_valid)) + '\n')
 	for i in signed_up_valid:
 		output.write(str(i) + ' ' + str(libraries[i]['output number of books']) + '\n')
